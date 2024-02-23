@@ -1,9 +1,6 @@
 <?php
 
-ini_set("display_errors" , 1 );
-ini_set("display_startup_errors" , 1 );
 
-error_reporting(E_ALL);
 
 require_once("db.php");
 require_once("conectar.php");
@@ -13,13 +10,13 @@ class Category extends Conexion {
     private $id;
     private $nombre;
     private $createdAt;
-    private $updateAt;
+    private $updatedAt;
 
-    public function __construct($id = 0, $nombre="", $createdAt="", $updateAt="", $dbCnx){
+    public function __construct($id = 0, $nombre="", $createdAt="", $updatedAt="", $dbCnx= ""){
         $this->id = $id;
         $this->nombre = $nombre;
         $this->createdAt = $createdAt;
-        $this->updateAt = $updateAt;
+        $this->updatedAt = $updatedAt;
         parent::__construct($dbCnx);
     }
 
@@ -53,20 +50,20 @@ class Category extends Conexion {
 
     /* ---------------------------------- */
 
-    public function setUpdateAt($updateAt){
-        $this->updateAt = $updateAt;
+    public function setUpdatedAt($updatedAt){
+        $this->updateAt = $updatedAt;
     }
 
     public function getUpdateAt(){
-        return $this->updateAt;
+        return $this->updatedAt;
     }
 
     /* ---------------------------------- */
 
     public function insertCategoryData(){
         try{
-            $stm = $this->dbCnx->conexion("INSERT INTO category2(nombre, createdAt, updateAt) VALUES (?,?,?)");
-            $stm->execute([$this->nombre, $this->createdAt, $this->updateAt]);
+            $stm = $this->dbCnx->conexion("INSERT INTO category2(nombre, createdAt, updatedAt) VALUES (?,?,?)");
+            $stm->execute([$this->nombre, $this->createdAt, $this->updatedAt]);
         }catch(Exception $e){
             return $e->getMessage();
         }
@@ -86,7 +83,7 @@ class Category extends Conexion {
         try{
             $stm = $this->dbCnx->prepare("DELETE FROM category2 WHERE id=?");
             $stm->execute([$this->id]);
-            echo "<script>alert('borrado exitosamente');document.location='../CATEGORIAS/categorias.php'</script> ";/* cambiar la ruta */
+            echo "<script>alert('borrado exitosamente');document.location='./index.php'</script> ";/* cambiar la ruta */
         }catch(Exception $e){
             return $e->getMessage();
         }
@@ -105,7 +102,7 @@ class Category extends Conexion {
     public function updateCategory(){
         try{
             $stm = $this->dbCnx->prepare('UPDATE category2 SET nombre = ?, createdAt = ?, updateAt = ? WHERE id=?');
-            $stm->execute([$this->nombre, $this->createdAt, $this->updateAt, $this->id]);
+            $stm->execute([$this->nombre, $this->createdAt, $this->updatedAt, $this->id]);
         }catch(Exception $e){
             return $e->getMessage();
         }
