@@ -1,6 +1,6 @@
 <?php 
 
-/* require_once(__DIR__."../config/config.php");
+require_once(__DIR__."../config/config.php");
 
 $dataCatego = new Category();
 $category4 = $_GET['id'];
@@ -17,8 +17,8 @@ if(isset($_POST['editar'])){
     $dataCatego->updateCategory();
     echo "<script>alert('actualizado exitosamente');document.location='./index.php'</script>";
 
-} */
-require_once(__DIR__."../config/config.php");
+} 
+/* require_once(__DIR__."../config/config.php");
 
 $dataCatego = new Category();
 $category4 = $_GET['id'];
@@ -41,7 +41,7 @@ if(isset($_POST['editar'])){
     $dataCategoUpdate->updateCategory();
     
     echo "<script>alert('actualizado exitosamente');document.location='./index.php'</script>";
-}
+} */
 
 ?>
 

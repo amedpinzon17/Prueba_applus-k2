@@ -24,7 +24,7 @@ if(isset($_POST['guardarProduct'])){
 
     $producto = new Product();
     
-
+    $producto -> setCategoria($_POST['categoria']);
     $producto -> setCodigo($_POST['codigo']);
     $producto -> setNombre($_POST['nombre']);
     $producto -> setPrice($_POST['price']);

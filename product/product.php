@@ -58,8 +58,8 @@ $all = $data->selectProductAll();
           <td><?php echo $val['updated']; ?></td>
 
         <td>
-                <a class="btn btn-danger" href="#">Borrar</a>
-                <a class="btn btn-warning" href="#">Editar</a>
+                <a class="btn btn-danger" href="borrarPro.php?categoria=<?= $val['categoria']?>&req=delete">Borrar</a>
+                <a class="btn btn-warning" href="editarPro.php?id=<?= $val['categoria']?>">Editar</a>
         </td>
         <?php } ?>
         </tr> 
@@ -81,6 +81,16 @@ $all = $data->selectProductAll();
             </div>
             <div class="modal-body">
             <form class="col d-flex flex-wrap" action="./../config/registro.php" method="post">
+
+            <div class="mb-1 col-12">
+                <label for="categoria" class="form-label">Categoria</label>
+                <input 
+                  type="init"
+                  id="categoria"
+                  name="categoria"
+                  class="form-control"  
+                />
+              </div>
             <div class="mb-1 col-12">
                 <label for="codigo" class="form-label">codigo</label>
                 <input 

@@ -207,10 +207,10 @@ public function setUpdated($updated) {
 
 public function insertProduct(){
     try{
-         $stm = $this -> dbCnx -> prepare('INSERT INTO product3(codigo, nombre, price, created, updated) VALUES (?,?,?,?,?)');
-            $stm -> execute([$this -> codigo, $this -> nombre, $this -> price, $this -> created, $this -> updated]);
+         $stm = $this -> dbCnx -> prepare('INSERT INTO product3(categoria, codigo, nombre, price, created, updated) VALUES (?,?,?,?,?,?)');
+            $stm -> execute([$this -> categoria, $this -> codigo, $this -> nombre, $this -> price, $this -> created, $this -> updated]);
     }catch(Exception $e){
-        return e->getMessage();
+        return $e->getMessage();
     }
 }
 
@@ -248,14 +248,15 @@ public function selectProductOne(){
         }
     }
 
-    public function updateProduct(){
-        try{
-            $stm = $this -> dbCnx -> prepare('UPDATE product3 SET codigo = ?, nombre = ?, price = ?, created = ?, updated = ? WHERE categoria=?');
-            $stm -> execute([$this -> codigo, $this -> nombre, $this -> price, $this -> created, $this -> updated, $this -> categoria]);
-        }catch(Exception $e){
-            return $e -> getMessage();
-        }
+    
+public function updateProduct(){
+    try{
+        $stm = $this->dbCnx->prepare('UPDATE product3 SET codigo=?, nombre=?, price=?, created=?, updated=? WHERE categoria=?');
+        $stm->execute([$this->codigo, $this->nombre, $this->price, $this->created, $this->updated, $this->categoria]);
+    } catch(Exception $e){
+        return $e->getMessage();
     }
+}
 
 
 
