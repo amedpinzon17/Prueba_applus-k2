@@ -5,20 +5,17 @@ body{
 
 
 
-/* Estilo general para el contenedor con ng-controller */
 div[ng-controller="MyCtrl"] {
   background-color: #f2f2f2;
   padding: 20px;
 }
 
-/* Estilo para el título */
 div[ng-controller="MyCtrl"] h2 {
   color: #333;
   font-size: 24px;
   margin-top: 0;
 }
 
-/* Estilo para el párrafo */
 div[ng-controller="MyCtrl"] h4 {
   color: #666;
   font-size: 16px;
@@ -30,6 +27,7 @@ div[ng-controller="MyCtrl"] h4 {
  .titulo{
     text-align: center;
     padding: 2rem;
+    
 }
 .botonesEnlaces{
     display: flex;
@@ -39,10 +37,10 @@ div[ng-controller="MyCtrl"] h4 {
 .enlace{
     padding: 1em;
     background-color: rgb(125, 92, 243);
-    color: black;
     border-radius: 10px;
     padding: 1em;
 }
+
 
 
 

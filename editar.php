@@ -18,30 +18,7 @@ if(isset($_POST['editar'])){
     echo "<script>alert('actualizado exitosamente');document.location='./index.php'</script>";
 
 } 
-/* require_once(__DIR__."../config/config.php");
 
-$dataCatego = new Category();
-$category4 = $_GET['id'];
-$dataCatego->setId($category4);
-
-$record1 = $dataCatego->selectOneCategory();
-$valCate = $record1[0];
-
-if(isset($_POST['editar'])){
-    // Crear una nueva instancia para actualizar los datos
-    $dataCategoUpdate = new Category();
-
-    // Configurar los datos para la actualización
-    $dataCategoUpdate->setId($category4);
-    $dataCategoUpdate->setNombre($_POST['nombre']);
-    $dataCategoUpdate->setCreatedAt($_POST['createdAt']);
-    $dataCategoUpdate->setUpdatedAt($_POST['updatedAt']);
-
-    // Actualizar los datos
-    $dataCategoUpdate->updateCategory();
-    
-    echo "<script>alert('actualizado exitosamente');document.location='./index.php'</script>";
-} */
 
 ?>
 

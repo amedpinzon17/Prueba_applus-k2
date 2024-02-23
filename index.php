@@ -30,6 +30,8 @@ $all = $data->selectCategoryAll();
         
     <div class="botonesEnlaces">
         <a href="./product/product.php" class="enlace">Product</a>
+        <a href="./consultas/consulta1.php" class="enlace">Consulta 1 - Libros Prestados</a>
+        <a href="./consultas/consulta2.php" class="enlace">Consulta 2 - Libros No Devueltos en 7 días</a>
          <button type="button" class="btn btn-primary  boton"  data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</button>
     </div>
 
