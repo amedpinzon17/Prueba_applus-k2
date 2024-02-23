@@ -1,18 +1,17 @@
 <?php 
 
-require_once(__DIR__."/../config/config.php");
+ require_once(__DIR__."/../config/config.php");
+
 
 $dataPrdoduc = new Product();
-
-$producto4 = isset($_GET['categoria']) ? $_GET['categoria'] : null;
-
-$dataPrdoduc->setCategoria($producto4);
+$producto4 = $_GET['id'];
+$dataPrdoduc->setId($producto4);
 
 $record1 = $dataPrdoduc->selectProductOne();
-
-$valProduct = isset($record1[0]) ? $record1[0] : null;
+$valProducto = $record1[0];
 
 if (isset($_POST['editar'])) {
+    $dataPrdoduc->setCategoria($_POST['categoria']);
     $dataPrdoduc->setCodigo($_POST['codigo']);
     $dataPrdoduc->setNombre($_POST['nombre']);
     $dataPrdoduc->setPrice($_POST['price']);
@@ -21,7 +20,10 @@ if (isset($_POST['editar'])) {
 
     $dataPrdoduc->updateProduct();
     echo "<script>alert('actualizado exitosamente');document.location='./product.php'</script>";
-}
+}  
+
+
+
 
 ?>
 
@@ -43,25 +45,30 @@ if (isset($_POST['editar'])) {
 
 <div class="container d-flex align-items-center justify-content-center bg-light-subtle" style="height: 100vh; width: 30rem;">
     <form class="col d-flex flex-wrap" action="" method="post">
-        <div class="mb-1 col-12">
-            <label for="codigo" class="form-label">codigo</label>
-            <input type="text" id="codigo" name="codigo" class="form-control" value="<?php echo $valProduct['codigo']; ?>" />
+
+    <div class="mb-1 col-12">
+            <label for="categoria" class="form-label">Categoria</label>
+            <input type="number" id="categoria" name="categoria" class="form-control" value="<?php echo $valProducto['categoria']; ?>" />
         </div>
         <div class="mb-1 col-12">
-            <label for="nombre" class="form-label">nombre</label>
-            <input type="text" id="nombre" name="nombre" class="form-control" value="<?php echo $valProduct['nombre']; ?>" />
+            <label for="codigo" class="form-label">Codigo</label>
+            <input type="text" id="codigo" name="codigo" class="form-control" value="<?php echo $valProducto['codigo']; ?>" />
         </div>
         <div class="mb-1 col-12">
-            <label for="price" class="form-label">price</label>
-            <input type="text" id="price" name="price" class="form-control" value="<?php echo $valProduct['price']; ?>" />
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" id="nombre" name="nombre" class="form-control" value="<?php echo $valProducto['nombre']; ?>" />
         </div>
         <div class="mb-1 col-12">
-            <label for="created" class="form-label">created</label>
-            <input type="date" id="created" name="created" class="form-control" value="<?php echo $valProduct['created']; ?>" />
+            <label for="price" class="form-label">Price</label>
+            <input type="decimal" id="price" name="price" class="form-control" value="<?php echo $valProducto['price']; ?>" />
+        </div>
+        <div class="mb-1 col-12">
+            <label for="created" class="form-label">Created</label>
+            <input type="date" id="created" name="created" class="form-control" value="<?php echo $valProducto['created']; ?>" />
         </div>
         <div class="mb-1 col-12">
             <label for="updated" class="form-label">Updated</label>
-            <input type="date" id="updated" name="updated" class="form-control" value="<?php echo $valProduct['updated']; ?>" />
+            <input type="date" id="updated" name="updated" class="form-control" value="<?php echo $valProducto['updated']; ?>" />
         </div>
 
         <div class="col-12 m-2">

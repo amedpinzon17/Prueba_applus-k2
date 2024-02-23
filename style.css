@@ -38,6 +38,7 @@ div[ng-controller="MyCtrl"] h4 {
     padding: 1em;
     background-color: rgb(125, 92, 243);
     border-radius: 10px;
+    color: white;
     padding: 1em;
 }
 

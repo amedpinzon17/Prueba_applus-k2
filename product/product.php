@@ -2,7 +2,7 @@
 
 require_once(__DIR__ ."/../config/config.php");
 
-$data = new Product(0, "codigo", "nombre", "price", "created", "updated", "dbCnx");
+$data = new Product(0, "categoria", "codigo", "nombre", "price", "created", "updated", "dbCnx");
 
 $all = $data->selectProductAll();
 ?>
@@ -40,11 +40,12 @@ $all = $data->selectProductAll();
     <thead>
         <tr>
         <th scope="col">Id</th>
+        <th scope="col">Categoria</th>
         <th scope="col">Codigo</th>
         <th scope="col">Nombre</th>
         <th scope="col">Price</th>
-        <th scope="col">CreatedAt</th>
-        <th scope="col">UpdatedAt</th>
+        <th scope="col">Created</th>
+        <th scope="col">Updated</th>
         <th scope="col">Acciones</th>
         </tr>
     </thead>
@@ -52,6 +53,7 @@ $all = $data->selectProductAll();
 
     <?php foreach($all as $key => $val) {  ?>
         <tr ng-repeat="category in categories">
+          <td><?php echo $val['id']; ?></td>
           <td><?php echo $val['categoria']; ?></td>
           <td><?php echo $val['codigo']; ?></td>
           <td><?php echo $val['nombre']; ?></td>
@@ -60,8 +62,8 @@ $all = $data->selectProductAll();
           <td><?php echo $val['updated']; ?></td>
 
         <td>
-                <a class="btn btn-danger" href="borrarPro.php?categoria=<?= $val['categoria']?>&req=delete">Borrar</a>
-                <a class="btn btn-warning" href="editarPro.php?id=<?= $val['categoria']?>">Editar</a>
+                <a class="btn btn-danger" href="borrarPro.php?id=<?= $val['id']?>&req=delete">Borrar</a>
+                <a class="btn btn-warning" href="editarPro.php?id=<?= $val['id']?>">Editar</a>
         </td>
         <?php } ?>
         </tr> 
@@ -84,10 +86,11 @@ $all = $data->selectProductAll();
             <div class="modal-body">
             <form class="col d-flex flex-wrap" action="./../config/registro.php" method="post">
 
+
             <div class="mb-1 col-12">
                 <label for="categoria" class="form-label">Categoria</label>
                 <input 
-                  type="init"
+                  type="number"
                   id="categoria"
                   name="categoria"
                   class="form-control"  

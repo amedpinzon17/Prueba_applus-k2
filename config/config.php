@@ -118,14 +118,16 @@ class Category extends Conexion {
 
 
 class Product extends Conexion {
+    private $id;
     private $categoria;
     private $codigo;
     private $nombre;
     private $price;
-    private $crated;
+    private $created;
     private $updated;
     
-     public function __construct($categoria = 0, $codigo = "", $nombre = "", $price ="", $created = "", $updated="", $dbCnx = ""){
+     public function __construct($id = 0, $categoria = "", $codigo = "", $nombre = "", $price ="", $created = "", $updated="", $dbCnx = ""){
+        $this->id = $id;
         $this -> categoria = $categoria;
         $this -> codigo = $codigo;
         $this -> nombre = $nombre;
@@ -135,6 +137,19 @@ class Product extends Conexion {
         parent:: __construct($dbCnx);
     }
 
+
+
+
+
+    public function setId($id) {
+        $this->id = $id;
+    }
+
+    public function getId(){
+        return $this->id;
+    }
+
+/* ----------------------------------------------------- */
 
 
      public function setCategoria($categoria) {
@@ -228,10 +243,10 @@ public function insertProduct(){
 
     public function deleteProduct(){
         try{ 
-        $stm = $this -> dbCnx -> prepare('DELETE FROM product3 WHERE categoria=?');
-        $stm ->execute([$this -> categoria]);
-        return $stm->fetchAll();
+        $stm = $this -> dbCnx -> prepare('DELETE FROM product3 WHERE id=?');
+        $stm ->execute([$this -> id]);
         echo "<script>alert('borrado exitosamente');document.location='../product/product.php'</script> " ;
+        return $stm->fetchAll();
     }catch(Exception $e){
         return $e->getMessage();
     }
@@ -240,19 +255,21 @@ public function insertProduct(){
 
 public function selectProductOne(){
         try{
-            $stm = $this ->dbCnx -> prepare('SELECT * FROM product3 WHERE categoria=?');
-            $stm ->execute([$this ->categoria]);
-            return $stm -> fetchAll();
+            $stm = $this ->dbCnx -> prepare('SELECT * FROM product3 WHERE id=?');
+            $stm ->execute([$this ->id]);
+            $result= $stm -> fetchAll(PDO::FETCH_ASSOC);
+            return $result ?: [];
         }catch(Exception $e){
             return $e -> getMessage();
         }
     }
 
+
     
 public function updateProduct(){
     try{
-        $stm = $this->dbCnx->prepare('UPDATE product3 SET codigo=?, nombre=?, price=?, created=?, updated=? WHERE categoria=?');
-        $stm->execute([$this->codigo, $this->nombre, $this->price, $this->created, $this->updated, $this->categoria]);
+        $stm = $this->dbCnx->prepare('UPDATE product3 SET codigo=?, categoria=?, nombre=?, price=?, created=?, updated=? WHERE id=?');
+        $stm->execute([$this->codigo, $this->nombre, $this->price, $this->created, $this->updated, $this->categoria ,$this->id]);
     } catch(Exception $e){
         return $e->getMessage();
     }
