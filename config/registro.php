@@ -12,7 +12,27 @@ if(isset($_POST['guardarCategory'])){
 
 
     $category -> insertCategoryData();
-    echo "<script> alert('los datos fueron guardados');document.location='./index.php'</script>";
+    echo "<script> alert('los datos fueron guardados');document.location='../index.php'</script>";
 }
 
+
+/* ------------------------------------------------------------------- */
+
+if(isset($_POST['guardarProduct'])){
+    require_once("config.php");
+
+
+    $producto = new Product();
+    
+
+    $producto -> setCodigo($_POST['codigo']);
+    $producto -> setNombre($_POST['nombre']);
+    $producto -> setPrice($_POST['price']);
+    $producto -> setCreated($_POST['created']);
+    $producto -> setUpdated($_POST['updated']);
+
+    $producto ->insertProduct();
+    echo "<script> alert('los datos fueron guardados');document.location='./../product/product.php'</script>";
+
+}
 ?>
